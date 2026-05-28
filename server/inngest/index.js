@@ -2,7 +2,7 @@ import { Inngest } from "inngest";
 import User from "../models/User.js";
 
 // Create a client to send and receive events
-export const inngest = new Inngest({ id: "Bolt-app" });
+export const inngest = new Inngest({ id: "bolt-app" });
 //Creating hook for user data storing
 const syncUserCreation = inngest.createFunction(
   {
