@@ -244,3 +244,68 @@ export const sendConnectionRequest = async (req, res) => {
     });
   }
 };
+
+export const getUserConnections = async (req, res) => {
+  try {
+    const { userId } = req.auth();
+    const user = await User.findById(userId).populate(
+      "connections followers following",
+    );
+
+    const connections = user.connections;
+    const followers = user.followers;
+    const following = user.following;
+    const pendingConnections = (
+      await Connection.find({ to_user_id: userId, status: "pending" }).populate(
+        "from_user_id",
+      )
+    ).map((connection) => connection.from_user_id);
+    return res.json({
+      success: true,
+      connections,
+      followers,
+      following,
+      pendingConnections,
+      message: "Connections fetched successfully",
+    });
+  } catch (error) {
+    return res.json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+export const acceptConnectionsRequest = async (req, res) => {
+  try {
+    const { userId } = req.auth();
+    const { id } = req.body;
+    const connection = await Connection.findOne({
+      from_user_id: id,
+      to_user_id: userId,
+    });
+    if (!connection) {
+      return res.json({
+        success: false,
+        message: "Connection request not found",
+      });
+    }
+    const user = await User.findOne(userId);
+    user.connection.push(id);
+    await user.save();
+    const toUser = await User.findOne(id);
+    toUser.connection.push(userId);
+    await toUser.save();
+    connection.status = "accepted";
+    await connection.save();
+    return res.json({
+      success: true,
+      message: "Connection request accepted successfully",
+    });
+  } catch (error) {
+    return res.json({
+      success: false,
+      message: error.message,
+    });
+  }
+};

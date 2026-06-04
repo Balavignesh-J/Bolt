@@ -1,9 +1,12 @@
 import express from "express";
 import { protect } from "../middlewares/auth.js";
 import {
+  acceptConnectionsRequest,
   discoverUsers,
   followUser,
+  getUserConnections,
   getUserData,
+  sendConnectionRequest,
   unfollowUser,
   updateUserData,
 } from "../controllers/userController.js";
@@ -24,5 +27,8 @@ router.post(
 router.post("/discover", protect, discoverUsers);
 router.post("/follow", protect, followUser);
 router.post("/unfollow", protect, unfollowUser);
+router.post("/connect", protect, sendConnectionRequest);
+router.post("/accept", protect, acceptConnectionsRequest);
+router.post("/connections", protect, getUserConnections);
 
 export default router;
