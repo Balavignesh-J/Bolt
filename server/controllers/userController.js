@@ -1,4 +1,5 @@
 import imageKit from "../Configs/imageKit.js";
+import postModel from "../models/Post.js";
 import User from "../models/User.js";
 import fs from "fs";
 
@@ -301,6 +302,30 @@ export const acceptConnectionsRequest = async (req, res) => {
     return res.json({
       success: true,
       message: "Connection request accepted successfully",
+    });
+  } catch (error) {
+    return res.json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+export const getUserProfiles = async (req, res) => {
+  try {
+    const { profileId } = req.body;
+    const profile = await User.findById(profileId);
+    if (!profile) {
+      return res.json({
+        success: false,
+        message: "Profile not found",
+      });
+    }
+    const post = await postModel.find({ user: profileId }).populate("user");
+    return res.json({
+      success: true,
+      profile,
+      post,
     });
   } catch (error) {
     return res.json({
