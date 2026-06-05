@@ -1,4 +1,5 @@
 import imageKit from "../Configs/imageKit.js";
+import { inngest } from "../inngest/index.js";
 import postModel from "../models/Post.js";
 import User from "../models/User.js";
 import fs from "fs";
@@ -220,9 +221,15 @@ export const sendConnectionRequest = async (req, res) => {
       ],
     });
     if (!connection) {
-      await Connection.create({
+      const connection = await Connection.create({
         from_user_id: userId,
         to_user_id: id,
+      });
+      await inngest.send({
+        name: "app/connection-request",
+        data: {
+          connectionId: connection._id,
+        },
       });
       return res.json({
         success: true,
