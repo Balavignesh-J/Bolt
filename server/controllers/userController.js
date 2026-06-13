@@ -1,5 +1,6 @@
 import imageKit from "../Configs/imageKit.js";
 import { inngest } from "../inngest/index.js";
+import Connection from "../models/Connections.js";
 import postModel from "../models/Post.js";
 import User from "../models/User.js";
 import fs from "fs";

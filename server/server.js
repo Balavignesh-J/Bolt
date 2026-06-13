@@ -16,7 +16,17 @@ const PORT = process.env.PORT || 4000;
 app.use(express.json());
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
-await ConnectDB();
+
+// Lazy DB connection — connects on first request, safe for Vercel serverless
+let isConnected = false;
+app.use(async (req, res, next) => {
+  if (!isConnected) {
+    await ConnectDB();
+    isConnected = true;
+  }
+  next();
+});
+
 app.use(clerkMiddleware());
 
 app.use("/api/inngest", serve({ client: inngest, functions }));
@@ -28,6 +38,12 @@ app.use("/api/message", messageRouter);
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+
+// Only listen when running locally — Vercel handles the server itself
+if (!process.env.VERCEL) {
+  app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+  });
+}
+
+export default app;
