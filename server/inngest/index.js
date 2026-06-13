@@ -1,6 +1,7 @@
 import { Inngest } from "inngest";
 import User from "../models/User.js";
 import sendEmail from "../Configs/nodeMailer.js";
+import messageModel from "../models/Message.js";
 
 // Create a client to send and receive events
 export const inngest = new Inngest({ id: "bolt-app" });
@@ -132,18 +133,15 @@ const deleteStory = inngest.createFunction(
     });
   },
 );
-import { inngest } from "./client.js";
-import messageModel from "../models/messageModel.js";
-import userModel from "../models/userModel.js";
-import { sendEmail } from "../utils/sendEmail.js";
 
 export const sendNotificationOfUnseenMessages = inngest.createFunction(
   {
     id: "send-unseen-messages-notification",
-    name: "Send Unseen Messages Notification",
-  },
-  {
-    cron: "TZ=America/New_York 0 9 * * *",
+    triggers: [
+      {
+        cron: "TZ=America/New_York 0 9 * * *",
+      },
+    ],
   },
   async ({ step }) => {
     const messages = await step.run("fetch-unseen-messages", async () => {

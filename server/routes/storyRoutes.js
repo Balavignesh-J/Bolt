@@ -1,6 +1,7 @@
 import express from "express";
-import { protect } from "../middlewares/auth";
-import { addUserStory, getStories } from "../controllers/storyController";
+import { protect } from "../middlewares/auth.js";
+import { addUserStory, getStories } from "../controllers/storyController.js";
+import { upload } from "../Configs/multer.js";
 const storyRouter = express.Router();
 
 storyRouter.post("/create", upload.single("media"), protect, addUserStory);
