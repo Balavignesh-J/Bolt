@@ -8,6 +8,7 @@ import router from "./routes/userRoutes.js";
 import { clerkMiddleware } from "@clerk/express";
 import postRouter from "./routes/postRoutes.js";
 import storyRouter from "./routes/storyRoutes.js";
+import messageRouter from "./routes/messageRoutes.js";
 
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -22,6 +23,7 @@ app.use("/api/inngest", serve({ client: inngest, functions }));
 app.use("/api/user", router);
 app.use("/api/post", postRouter);
 app.use("/api/story", storyRouter);
+app.use("/api/message", messageRouter);
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
