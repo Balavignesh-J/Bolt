@@ -1,5 +1,5 @@
 // controllers/messageController.js
-import imageKit from "../configs/imageKit.js";
+import imageKit from "../Configs/imageKit.js";
 import messageModel from "../models/Message.js";
 import fs from "fs";
 
