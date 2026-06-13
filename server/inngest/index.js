@@ -1,5 +1,7 @@
 import { Inngest } from "inngest";
 import User from "../models/User.js";
+import Connection from "../models/Connections.js";
+import storyModel from "../models/Story.js";
 import sendEmail from "../Configs/nodeMailer.js";
 import messageModel from "../models/Message.js";
 
@@ -67,9 +69,10 @@ const sendNewConnectionRequestReminder = inngest.createFunction(
   async ({ event, step }) => {
     const { connectionId } = event.data;
     await step.run("send-connection-request-mail", async () => {
-      const connection = await connectionModel
+      const connection = await Connection
         .findById(connectionId)
-        .populate("from_user_id to_user_id");
+        .populate("from_user_id to_user_id")
+        .lean();
       const subject = "New Connection Request";
       const body = `
       <div style="font-family: Arial, sans-serif; padding: 20px;">
@@ -90,9 +93,10 @@ const sendNewConnectionRequestReminder = inngest.createFunction(
     const in24Hours = new Date(Date.now() + 24 * 60 * 60 * 1000);
     await step.sleepUntil("wait-for-24-hours", in24Hours);
     await step.run("send-connection-request-reminder", async () => {
-      const connection = await connectionModel
+      const connection = await Connection
         .findById(connectionId)
-        .populate("from_user_id to_user_id");
+        .populate("from_user_id to_user_id")
+        .lean();
 
       if (connection.status === "accepted")
         return { message: "Already accepted" };
@@ -145,7 +149,7 @@ export const sendNotificationOfUnseenMessages = inngest.createFunction(
   },
   async ({ step }) => {
     const messages = await step.run("fetch-unseen-messages", async () => {
-      return await messageModel.find({ seen: false }).populate("to_user_id");
+      return await messageModel.find({ seen: false }).populate("to_user_id").lean();
     });
 
     const unseenCount = {};
@@ -158,7 +162,7 @@ export const sendNotificationOfUnseenMessages = inngest.createFunction(
 
     for (const userId of Object.keys(unseenCount)) {
       const user = await step.run(`fetch-user-${userId}`, async () => {
-        return await userModel.findById(userId);
+        return await User.findById(userId).lean();
       });
 
       if (!user) continue;
