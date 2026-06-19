@@ -2,11 +2,36 @@ import { BadgeCheck, Heart, MessageCircle, Share2 } from "lucide-react";
 import moment from "moment";
 import { useState } from "react";
 import { dummyUserData } from "../assets/assets";
+import { useSelector } from "react-redux";
+import { useAuth } from "@clerk/clerk-react";
+import api from "../api/axios.js";
+import toast from "react-hot-toast";
 
 const PostCard = ({ post }) => {
   const [likes, setLikes] = useState(post.likes_count);
-  const currentUser = dummyUserData;
-  const handleLike = () => {};
+  const currentUser = useSelector((state)=>state.user.value);
+  const {getToken} = useAuth()
+  const handleLike = async () => {
+    try {
+      const token = await getToken();
+      const { data } = await api.post(
+        `/api/post/like`,
+        { postId: post._id },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      if (data.success) {
+        setLikes((prev) =>
+          prev.includes(currentUser._id)
+            ? prev.filter((id) => id !== currentUser._id)
+            : [...prev, currentUser._id]
+        );
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
   const handleShare = () => {};
   const toggleComments = () => {};
   const postwithHashtags = post.content.replace(

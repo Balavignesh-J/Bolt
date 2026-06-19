@@ -26,7 +26,9 @@ const StoryModal = ({ setShowModal, fetchStories }) => {
     }
   };
 
-  const handleCreateStory = async (e) => {};
+  const handleCreateStory = async (e) => {
+    const media_type = mode==='media'?media?.type.startsWith('image')?'image':'video':"text";
+  };
 
   return (
     <div className="fixed inset-0 z-50 min-h-screen bg-black/80 backdrop-blur text-white flex items-center justify-center p-4">
