@@ -13,8 +13,8 @@ import toast, { Toaster } from "react-hot-toast";
 import { useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { fetchUser } from "./features/user/userSlice.js";
-import { fetchConnections } from "./redux/features/connectionSlice.js";
-import { addMessage } from "./redux/features/messageSlice.js";
+import { fetchConnections } from "./features/connections/connectionsSlice.js";
+import { addMessage } from "./features/messages/messagesSlice.js";
 import Notifications from "./components/Notifications";
 
 const App = () => {
