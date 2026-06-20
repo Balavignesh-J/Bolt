@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { MessageSquare, EyeIcon } from "lucide-react";
+import { MessageSquare, EyeIcon, Sparkles } from "lucide-react";
 import { useSelector } from "react-redux";
 
 const Messages = () => {
@@ -14,6 +14,26 @@ const Messages = () => {
           <p className="text-slate-600 dark:text-slate-400">Talk to your friends and family</p>
         </div>
         <div className="flex flex-col gap-3">
+          {/* AI Assistant Card */}
+          <div className="max-w-xl flex flex-wrap gap-5 p-6 bg-white/60 dark:bg-white/5 border border-white/40 dark:border-white/10 shadow-xl shadow-slate-200/50 dark:shadow-black/30 backdrop-blur-xl rounded-2xl transition-all duration-300">
+            <div className="rounded-full size-12 mx-auto shadow bg-gradient-to-r from-indigo-500 to-purple-600 flex items-center justify-center text-white">
+              <Sparkles className="w-6 h-6" />
+            </div>
+            <div className="flex-1">
+              <p className="font-medium text-slate-900 dark:text-slate-100">AI Assistant</p>
+              <p className="text-slate-500 dark:text-slate-400">@assistant</p>
+              <p className="text-sm text-slate-600 dark:text-slate-300">Ask questions, generate ideas, get explanations, and receive instant help.</p>
+            </div>
+            <div className="flex flex-col gap-2 mt-4 justify-center">
+              <button
+                className="size-10 flex items-center justify-center text-sm rounded-xl bg-white/60 dark:bg-white/10 hover:brightness-110 text-slate-800 dark:text-slate-200 active:scale-95 transition cursor-pointer shadow-sm"
+                onClick={() => navigate(`/messages/assistant`)}
+              >
+                <MessageSquare className="w-4 h-4" />
+              </button>
+            </div>
+          </div>
+          {/* User Connections */}
           {connections.map((user) => (
             <div
               key={user._id}
