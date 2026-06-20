@@ -1,6 +1,5 @@
 import { useState } from "react";
 import SideBar from "../components/SideBar";
-import ThemeToggle from "../components/ThemeToggle";
 import { Outlet } from "react-router-dom";
 import { X, Menu } from "lucide-react";
 import Loading from "../components/Loading";
@@ -18,7 +17,6 @@ const Layout = () => {
         <header className="sticky top-0 z-40 flex items-center justify-between gap-4 h-16 bg-white/60 dark:bg-white/5 border border-white/40 dark:border-white/10 shadow-xl shadow-slate-200/50 dark:shadow-black/30 backdrop-blur-xl rounded-2xl transition-all duration-300 mx-4 sm:mx-6 lg:mx-8 mt-4 sm:mt-6 px-4 sm:px-6">
           <div className="flex-1"></div>
           <div className="flex items-center gap-2">
-            <ThemeToggle />
             {sidebarOpen ? (
               <X
                 className="p-2 z-50 bg-white/60 dark:bg-white/5 border border-white/40 dark:border-white/10 shadow-xl shadow-slate-200/50 dark:shadow-black/30 backdrop-blur-xl rounded-xl w-10 h-10 text-slate-600 dark:text-slate-300 transition-all duration-300 sm:hidden cursor-pointer hover:brightness-110"

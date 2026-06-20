@@ -10,6 +10,7 @@ import { useAuth } from "@clerk/clerk-react";
 import api from "../api/axios";
 import toast from "react-hot-toast";
 import { useSelector } from "react-redux";
+import ThemeToggle from "../components/ThemeToggle";
 
 const Profile = () => {
   const currentUser = useSelector((state) => state.user.value);
@@ -49,6 +50,9 @@ const Profile = () => {
 
   return user ? (
     <div className="relative h-full overflow-y-scroll p-6">
+      <div className="absolute top-6 right-6 z-30">
+        <ThemeToggle />
+      </div>
       <div className="max-w-3xl mx-auto">
         {/* Profile card  */}
         <div className="bg-white/60 dark:bg-white/5 border border-white/40 dark:border-white/10 shadow-xl shadow-slate-200/50 dark:shadow-black/30 backdrop-blur-xl rounded-2xl overflow-hidden transition-all duration-300">
