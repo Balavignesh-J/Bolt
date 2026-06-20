@@ -3,7 +3,7 @@ import { dummyUserData } from "../assets/assets";
 import { useSelector } from "react-redux";
 
 const UserCard = ({ user }) => {
-  const currentUser = useSelector((state)=>state.user.value);
+  const currentUser = useSelector((state) => state.user.value);
 
   const handleFollow = async () => {};
   const handleConnectionRequest = async () => {};

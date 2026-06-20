@@ -1,15 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    messages:[]
-}
+  messages: [],
+};
 
-const messagesSlice=createSlice({
-    name:'messages',
-    initialState,
-    reducers:{
+const messagesSlice = createSlice({
+  name: "messages",
+  initialState,
+  reducers: {},
+});
 
-    }
-})
-
-export default messagesSlice
+export default messagesSlice;

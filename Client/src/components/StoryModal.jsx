@@ -27,7 +27,12 @@ const StoryModal = ({ setShowModal, fetchStories }) => {
   };
 
   const handleCreateStory = async (e) => {
-    const media_type = mode==='media'?media?.type.startsWith('image')?'image':'video':"text";
+    const media_type =
+      mode === "media"
+        ? media?.type.startsWith("image")
+          ? "image"
+          : "video"
+        : "text";
   };
 
   return (

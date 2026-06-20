@@ -17,15 +17,15 @@ import { fetchUser } from "./features/user/userSlice";
 const App = () => {
   const { user } = useUser();
   const { getToken } = useAuth();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   useEffect(() => {
     const fetchData = async () => {
       if (!user) return;
-      const token = await getToken()
-      dispatch(fetchUser(token))
-      fetchData()
-    }
-  }, [user,getToken,dispatch]);
+      const token = await getToken();
+      dispatch(fetchUser(token));
+      fetchData();
+    };
+  }, [user, getToken, dispatch]);
   return (
     <>
       <Toaster />

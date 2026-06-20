@@ -11,7 +11,7 @@ import api from "../api/axios.js";
 const Feed = () => {
   const [feeds, setfeeds] = useState([]);
   const [loading, setloading] = useState(true);
-  const {getToken} = useAuth()
+  const { getToken } = useAuth();
 
   const fetchFeeds = async () => {
     try {
