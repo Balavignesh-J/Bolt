@@ -23,6 +23,16 @@ const App = () => {
   const { user } = useUser();
   const { getToken } = useAuth();
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme === "dark" || (!savedTheme && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, []);
+
   useEffect(() => {
     const fetchData = async () => {
       if (!user) return;
