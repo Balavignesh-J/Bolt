@@ -80,7 +80,7 @@ const Chatbox = () => {
     user && (
       <div className="flex flex-col h-screen">
         {/* Header */}
-        <div className="flex items-center gap-2 p-2 md:px-10 xl:pl-42 bg-gradient-to-r from-indigo-50 to-purple-50 border-b border-gray-300">
+        <div className="flex items-center gap-2 p-2 md:px-10 xl:pl-42 bg-white/5 backdrop-blur-md border-b border-white/10 text-slate-200">
           <img
             src={user.profile_picture}
             alt=""
@@ -88,7 +88,7 @@ const Chatbox = () => {
           />
           <div>
             <p className="font-medium">{user.full_name}</p>
-            <p className="text-sm text-gray-500 -mt-1.5">@{user.username}</p>
+            <p className="text-sm text-slate-400 -mt-1.5">@{user.username}</p>
           </div>
         </div>
         {/* Messages container */}
@@ -102,7 +102,7 @@ const Chatbox = () => {
                   className={`flex flex-col ${message.to_user_id !== user._id ? "items-start" : "items-end"}`}
                 >
                   <div
-                    className={`p-2 text-sm max-w-sm bg-white text-slate-700 rounded-lg shadow ${message.to_user_id !== user._id ? "rounded-bl-none" : " rounded-br-none"}`}
+                    className={`p-2 text-sm max-w-sm bg-white/10 backdrop-blur-md border border-white/20 text-slate-200 rounded-xl shadow-lg ${message.to_user_id !== user._id ? "rounded-bl-none" : " rounded-br-none"}`}
                   >
                     {message.message_type === "image" && (
                       <img
@@ -119,10 +119,10 @@ const Chatbox = () => {
           </div>
         </div>
         <div className="px-4">
-          <div className="flex items-center gap-3 pl-5 p-1.5 bg-white w-full max-w-xl mx-auto border border-gray-200 shadow rounded-full mb-5">
+          <div className="flex items-center gap-3 pl-5 p-1.5 bg-white/10 backdrop-blur-md w-full max-w-xl mx-auto border border-white/20 shadow-lg rounded-full mb-5">
             <input
               type="text"
-              className="text-slate-700 outline-none flex-1"
+              className="text-slate-200 bg-transparent outline-none flex-1 placeholder-slate-400"
               placeholder="Type a message..."
               value={text}
               onChange={(e) => setText(e.target.value)}
@@ -136,7 +136,7 @@ const Chatbox = () => {
                   className="h-8 rounded"
                 />
               ) : (
-                <ImageIcon className="size-7 text-gray-400 cursor-pointer" />
+                  <ImageIcon className="size-7 text-slate-300 cursor-pointer" />
               )}
               <input
                 type="file"

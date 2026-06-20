@@ -50,14 +50,14 @@ const Feed = () => {
         </div>
       </div>
       <div className="max-xl:hidden sticky top-10">
-        <div className="max-w-xs bg-white text-xs p-4 rounded-md flex flex-col gap-2 shadow">
-          <h3 className="text-slate-800 font-semibold">Sponsored</h3>
+        <div className="max-w-xs bg-white/10 backdrop-blur-md border border-white/20 text-xs p-4 rounded-xl flex flex-col gap-2 shadow-lg text-slate-200">
+          <h3 className="text-slate-100 font-semibold">Sponsored</h3>
           <img
             src={assets.sponsored_img}
             alt="Sponsored"
             className="w-full h-auto rounded-md object-cover"
           />
-          <p className="text-slate-600 font-medium">Email Marketing</p>
+          <p className="text-slate-200 font-medium">Email Marketing</p>
           <p className="text-slate-400 text-sm">
             Supercharge your marketing with a powerful, easy-to-use platform
             built for results.

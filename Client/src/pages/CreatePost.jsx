@@ -52,17 +52,17 @@ const CreatePost = () => {
     }
   };
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
+    <div className="min-h-screen bg-transparent">
       <div className="max-w-6xl mx-auto p-6">
         {/* title  */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-slate-900 mb-2">
+          <h1 className="text-3xl font-bold text-slate-100 mb-2">
             Create Post
           </h1>
-          <p className="text-slate-600">Share your thoughts with the world.</p>
+          <p className="text-slate-300">Share your thoughts with the world.</p>
         </div>
         {/* Form */}
-        <div className="max-w-xl bg-white p-4 sm:p-8 sm:pb-3 rounded-xl shadow-md space-y-4">
+        <div className="max-w-xl bg-white/10 backdrop-blur-md border border-white/20 p-4 sm:p-8 sm:pb-3 rounded-2xl shadow-xl space-y-4 text-slate-200">
           {/* Header  */}
           <div className="flex items-center gap-3">
             <img
@@ -72,12 +72,12 @@ const CreatePost = () => {
             />
             <div className="">
               <h2 className="font-semibold">{user.full_name}</h2>
-              <p className="text-sm text-gray-500">@{user.username}</p>
+              <p className="text-sm text-slate-400">@{user.username}</p>
             </div>
           </div>
           {/* textare  */}
           <textarea
-            className="w-full resize-none max-h-20 mt-4 text-sm outline-none placeholder-gray-400"
+            className="w-full resize-none max-h-20 mt-4 text-sm outline-none placeholder-slate-400 bg-transparent text-slate-100"
             placeholder="What's happening?"
             onChange={(e) => setContent(e.target.value)}
             value={content}
@@ -106,10 +106,10 @@ const CreatePost = () => {
             </div>
           )}
           {/* bottom bar  */}
-          <div className="flex items-center justify-between pt-3 border-t border-gray-300">
+          <div className="flex items-center justify-between pt-3 border-t border-white/20">
             <label
               htmlFor="images"
-              className="flex items-center gap-2 text-sm text-gray-500 hover:text-gray-700 transition cursor-pointer"
+              className="flex items-center gap-2 text-sm text-slate-400 hover:text-slate-200 transition cursor-pointer"
             >
               <Image className="size-6" />
             </label>

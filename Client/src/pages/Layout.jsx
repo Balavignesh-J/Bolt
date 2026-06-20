@@ -11,17 +11,17 @@ const Layout = () => {
   return user ? (
     <div className="w-full flex h-screen">
       <SideBar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
-      <div className="flex-1 bg-slate-50">
+      <div className="flex-1 bg-transparent">
         <Outlet />
       </div>
       {sidebarOpen ? (
         <X
-          className="absolute top-3 right-3 p-2 z-100 bg-white rounded-md shadow w-10 h-10 text-gray-600 sm:hidden"
+          className="absolute top-3 right-3 p-2 z-100 bg-white/10 backdrop-blur-md border border-white/20 rounded-md shadow w-10 h-10 text-slate-200 sm:hidden"
           onClick={() => setSidebarOpen(false)}
         />
       ) : (
         <Menu
-          className="absolute top-3 right-3 p-2 z-100 bg-white rounded-md shadow w-10 h-10 text-gray-600 sm:hidden"
+          className="absolute top-3 right-3 p-2 z-100 bg-white/10 backdrop-blur-md border border-white/20 rounded-md shadow w-10 h-10 text-slate-200 sm:hidden"
           onClick={() => setSidebarOpen(true)}
         />
       )}

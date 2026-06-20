@@ -52,14 +52,14 @@ const RecentMessages = () => {
   }, [user]);
 
   return (
-    <div className="bg-white max-w-xs mt-4 p-4 min-h-20 rounded-md shadow text-xs text-slate-800">
-      <h3 className="font-semibold text-slate-8 mb-4">Recent Message</h3>
+    <div className="bg-white/10 backdrop-blur-md border border-white/20 max-w-xs mt-4 p-4 min-h-20 rounded-xl shadow-lg text-xs text-slate-200">
+      <h3 className="font-semibold text-slate-100 mb-4">Recent Message</h3>
       <div className="flex flex-col max-h-56 overflow-y-scroll no-scrollbar">
         {messages.map((message, index) => (
           <Link
             key={index}
             to={`/messages/${message.from_user_id._id}`}
-            className="flex items-start gap-2 py-2 hover:bg-slate-100"
+            className="flex items-start gap-2 py-2 px-2 rounded-lg hover:bg-white/10 transition-colors"
           >
             <img
               src={message.from_user_id.profile_picture}
@@ -74,7 +74,7 @@ const RecentMessages = () => {
                 </p>
               </div>
               <div className="flex justify-between">
-                <p className="text-gray-500">
+                <p className="text-slate-300">
                   {message.text ? message.text : "Media"}
                 </p>
                 {!message.seen && (

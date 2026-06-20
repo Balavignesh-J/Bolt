@@ -58,13 +58,13 @@ const StoriesBar = () => {
       <div className="flex gap-4 pb-5">
         <div
           onClick={() => setShowModal(true)}
-          className="rounded-lg shadow-sm min-w-30 max-w-30 max-h-40 aspect-[3/4] cursor-pointer hover:shadow-lg transition-all duration-200 border-2 border-dashed border-indigo-300 bg-gradient-to-b from-indigo-50 to-white"
+          className="rounded-lg shadow-sm min-w-30 max-w-30 max-h-40 aspect-[3/4] cursor-pointer hover:shadow-lg transition-all duration-200 border border-white/20 border-dashed bg-white/5 backdrop-blur-sm"
         >
           <div className="h-full flex flex-col items-center justify-center p-4">
-            <div className="size-10 bg-indigo-500 rounded-full flex items-center justify-center mb-3">
-              <Plus />
+            <div className="size-10 bg-indigo-500/80 rounded-full flex items-center justify-center mb-3">
+              <Plus className="text-white" />
             </div>
-            <p>Create Story</p>
+            <p className="text-slate-200">Create Story</p>
           </div>
         </div>
         {stories.map((story, idx) => {

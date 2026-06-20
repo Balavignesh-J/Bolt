@@ -70,14 +70,14 @@ const Connections = () => {
     });
   }, []);
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="min-h-screen bg-transparent">
       <div className="max-w-6xl mx-auto p-6">
         {/* Title  */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-slate-900 mb-2">
+          <h1 className="text-3xl font-bold text-slate-100 mb-2">
             Connections
           </h1>
-          <p className="text-slate-600">
+          <p className="text-slate-300">
             Manage your network and discover new connections
           </p>
         </div>
@@ -86,26 +86,26 @@ const Connections = () => {
           {dataArray.map((item, index) => (
             <div
               key={index}
-              className="flex flex-col items-center justify-center gap-1 border h-20 w-40 border-gray-200 bg-white shadow rounded-md"
+              className="flex flex-col items-center justify-center gap-1 border h-20 w-40 border-white/20 bg-white/10 backdrop-blur-md shadow-lg rounded-xl text-slate-200"
             >
               <b>{item.value.length}</b>
-              <p className="text-slate-600">{item.label}</p>
+              <p className="text-slate-300">{item.label}</p>
             </div>
           ))}
         </div>
         {/* Tabs  */}
 
-        <div className="inline-flex flex-wrap items-center border border-gray-200 rounded-md p-1 bg-white shadow-sm">
+        <div className="inline-flex flex-wrap items-center border border-white/20 rounded-xl p-1 bg-white/10 backdrop-blur-md shadow-md text-slate-200">
           {dataArray.map((tab) => (
             <button
               onClick={() => setCurrentTab(tab.label)}
               key={tab.label}
-              className={`flex items-center px-3 py-1 cursor-pointer text-sm rounded-md transition-colors ${currentTab === tab.label ? "bg-white font-medium text-black" : "text-gray-500 hover:text-black"}`}
+              className={`flex items-center px-3 py-1 cursor-pointer text-sm rounded-md transition-colors ${currentTab === tab.label ? "bg-white/20 font-medium text-white shadow-sm" : "text-slate-400 hover:text-slate-200"}`}
             >
               <tab.icon className="w-4 h-4" />
               <span className="ml-1">{tab.label}</span>
               {tab.count !== undefined && (
-                <span className="ml-2 text-xs bg-gray-100 text-gray-700 px-2 py-0.5 rounded-full">
+                <span className="ml-2 text-xs bg-white/20 text-slate-200 px-2 py-0.5 rounded-full">
                   {tab.count}
                 </span>
               )}
@@ -119,7 +119,7 @@ const Connections = () => {
             ?.value.map((user) => (
               <div
                 key={user._id}
-                className="w-full max-w-88 flex gap-5 p-6 bg-white shadow rounded-md"
+                className="w-full max-w-88 flex gap-5 p-6 bg-white/10 backdrop-blur-md border border-white/20 shadow-lg rounded-2xl"
               >
                 <img
                   src={user.profile_picture}
@@ -127,9 +127,9 @@ const Connections = () => {
                   className="rounded-full w-12 h-12 shadow-md mx-auto"
                 />
                 <div className="flex-1">
-                  <p className="font-medium text-slate-700">{user.full_name}</p>
-                  <p className="text-slate-500">@{user.username}</p>
-                  <p className="text-sm text-gray-600">
+                  <p className="font-medium text-slate-200">{user.full_name}</p>
+                  <p className="text-slate-400">@{user.username}</p>
+                  <p className="text-sm text-slate-300">
                     {user.bio.slice(0, 30)}...
                   </p>
                   <div className="flex max-sm:flex-col gap-2 mt-4">
@@ -144,7 +144,7 @@ const Connections = () => {
                     {currentTab === "Following" && (
                       <button
                         onClick={() => handleUnfollow(user._id)}
-                        className="w-full p-2 text-sm rounded bg-slate-100 hover:bg-slate-200 text-black active:scale-95 transition cursor-pointer"
+                        className="w-full p-2 text-sm rounded bg-white/10 hover:bg-white/20 text-slate-200 active:scale-95 transition cursor-pointer"
                       >
                         Unfollow
                       </button>
@@ -152,7 +152,7 @@ const Connections = () => {
                     {currentTab === "Pending" && (
                       <button
                         onClick={() => acceptConnection(user._id)}
-                        className="w-full p-2 text-sm rounded bg-slate-100 hover:bg-slate-200 text-black active:scale-95 transition cursor-pointer"
+                        className="w-full p-2 text-sm rounded bg-white/10 hover:bg-white/20 text-slate-200 active:scale-95 transition cursor-pointer"
                       >
                         Accept
                       </button>
@@ -160,7 +160,7 @@ const Connections = () => {
                     {currentTab === "Connections" && (
                       <button
                         onClick={() => navigate(`/messages/${user._id}`)}
-                        className="w-full p-2 text-sm rounded bg-slate-100 hover:bg-slate-200 text-slate-800 active:scale-95 transition cursor-pointer flex items-center justify-center gap-1"
+                        className="w-full p-2 text-sm rounded bg-white/10 hover:bg-white/20 text-slate-200 active:scale-95 transition cursor-pointer flex items-center justify-center gap-1"
                       >
                         <MessageSquare className="w-4 h-4" />
                         Message

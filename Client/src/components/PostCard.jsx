@@ -38,7 +38,7 @@ const PostCard = ({ post }) => {
     `<span class="text-indigo-600">$1</span>`,
   );
   return (
-    <div className="bg-white rounded-xl shadow p-4 space-y-4 w-full max-w-2xl">
+    <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl shadow-xl p-4 space-y-4 w-full max-w-2xl text-slate-200">
       {/* user info + menu */}
       <div className="inline-flex items-center gap-3 cursor-pointer">
         <img
@@ -51,14 +51,14 @@ const PostCard = ({ post }) => {
             <span>{post.user.full_name}</span>
             <BadgeCheck className="w-4 h-4 text-blue-500" />
           </div>
-          <div className="text-gray-500 text-sm">
+          <div className="text-slate-400 text-sm">
             @{post.user.username} · {moment(post.createdAt).fromNow()}
           </div>
         </div>
       </div>
       {post.content && (
         <div
-          className="text-gray-500 text-sm"
+          className="text-slate-300 text-sm"
           dangerouslySetInnerHTML={{ __html: postwithHashtags }}
         ></div>
       )}
@@ -72,7 +72,7 @@ const PostCard = ({ post }) => {
           />
         ))}
       </div>
-      <div className="flex items-center gap-4 text-gray-600 text-sm pt-2 border-t border-gray-300">
+      <div className="flex items-center gap-4 text-slate-300 text-sm pt-2 border-t border-white/10">
         <div className="flex items-center gap-1">
           <Heart
             className={`w-4 h-4 cursor-pointer ${
