@@ -1,6 +1,8 @@
+import { useAuth } from "@clerk/clerk-react";
 import { ArrowLeft, Sparkle, Text, Upload } from "lucide-react";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import api from "../api/axios";
 
 const StoryModal = ({ setShowModal, fetchStories }) => {
   const bgcolors = [
@@ -16,13 +18,44 @@ const StoryModal = ({ setShowModal, fetchStories }) => {
   const [text, setText] = useState("");
   const [media, setMedia] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(null);
+  const { getToken } = useAuth();
+
+  const MAX_VIDEO_DURATION = 60;
+  const MAX_VIDEO_SIZE_MB = 50;
 
   const handleMediaUpload = (e) => {
     const file = e.target.files[0];
     if (file) {
-      setMode("media");
+      if (file.startsWith("video")) {
+        if (file.size > MAX_VIDEO_SIZE_MB * 1024 * 1024) {
+          toast.error(`Video size cannot exceed ${MAX_VIDEO_SIZE_MB}mb`);
+          setMedia(null);
+          setPreviewUrl(null);
+          return;
+        }
+
+        const video = document.createElement("video");
+        video.src = URL.createObjectURL(file);
+        video.preload = "metadata";
+        video.onloadedmetadata = () => {
+          URL.revokeObjectURL(video.src);
+          if (video.duration > MAX_VIDEO_DURATION) {
+            toast.error(
+              `Video duration cannot exceed ${MAX_VIDEO_DURATION} seconds`,
+            );
+          } else {
+            setMedia(file);
+            setPreviewUrl(URL.createObjectURL(file));
+            setMode("media");
+            setText(" ");
+          }
+        };
+      }
+    } else if (file.type.startsWith("image")) {
       setMedia(file);
       setPreviewUrl(URL.createObjectURL(file));
+      setMode("media");
+      setText(" ");
     }
   };
 
@@ -33,6 +66,29 @@ const StoryModal = ({ setShowModal, fetchStories }) => {
           ? "image"
           : "video"
         : "text";
+    if (media_type === "text" && !text) {
+      return toast.error("Please enter some text");
+    }
+    const formData = new FormData();
+    formData.append("content", text);
+    formData.append("media_type", media_type);
+    formData.append("background_color", background);
+    if (media) formData.append("media", media);
+    const token = await getToken();
+    try {
+      const { data } = await api.post(`/api/story/create`, formData, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      if (data.success) {
+        setShowModal(false);
+        toast.success("Story created successfully");
+        fetchStories();
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      toast.error(error.message);
+    }
   };
 
   return (
@@ -110,7 +166,7 @@ const StoryModal = ({ setShowModal, fetchStories }) => {
             <input
               type="file"
               accept="image/*,video/*"
-              onChange={(e) => handleMediaUpload(e)}
+              onChange={handleMediaUpload}
               hidden
             />
             <Upload size={18} /> Photo/Video
@@ -120,8 +176,6 @@ const StoryModal = ({ setShowModal, fetchStories }) => {
           onClick={(e) =>
             toast.promise(handleCreateStory(e), {
               loading: "Creating story...",
-              success: "Story created successfully!",
-              error: (err) => <p>{err.message}</p>,
             })
           }
           className="flex items-center justify-center gap-2 text-white py-3 mt-4 w-full rounded bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 active:scale-95 transition"

@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { dummyUserData } from "../assets/assets";
 import { Image, X } from "lucide-react";
 import toast from "react-hot-toast";
 import { useSelector } from "react-redux";
@@ -8,47 +7,50 @@ import api from "../api/axios";
 import { useNavigate } from "react-router-dom";
 
 const CreatePost = () => {
-  const {navigate} = useNavigate();
+  const { navigate } = useNavigate();
   const [content, setContent] = useState("");
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(false);
-  const user = useSelector((state)=>state.user.value);
-  const {getToken} = useAuth();
+  const user = useSelector((state) => state.user.value);
+  const { getToken } = useAuth();
 
-  const handleSubmit=async()=>{
-    if(!images.length && !content){
+  const handleSubmit = async () => {
+    if (!images.length && !content) {
       return toast.error("Please Add one text or image");
     }
     setLoading(true);
-    const postType=images.length && content ?"text_with_image":images.length ?
-    "text":"image";
-  try {
-    const formData=new FormData();
+    const postType =
+      images.length && content
+        ? "text_with_image"
+        : images.length
+          ? "text"
+          : "image";
+    try {
+      const formData = new FormData();
 
-    formData.append("content",content);
-    formData.append("post_type",postType);
-    images.map((image)=>{
-      formData.append("images",image);
-    })
-    const token=await getToken();
-    const {data}=await api.post("/api/post/add",formData,{
-      headers:{
-        Authorization:`Bearer ${token}`
+      formData.append("content", content);
+      formData.append("post_type", postType);
+      images.map((image) => {
+        formData.append("images", image);
+      });
+      const token = await getToken();
+      const { data } = await api.post("/api/post/add", formData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      if (data.success) {
+        navigate("/");
+      } else {
+        console.log(data.message);
+        throw new Error(data.message);
       }
-    })
-    if(data.success){
-      navigate("/");
+    } catch (error) {
+      console.log(error.message);
+      throw new Error(error.message);
     }
-    else{
-      console.log(data.message);
-      throw new Error(data.message);
-    }
-  } catch (error) {
-    console.log(error.message);
-    throw new Error(error.message);
-  }
-  setLoading(false);
-  }
+    setLoading(false);
+  };
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
       <div className="max-w-6xl mx-auto p-6">
