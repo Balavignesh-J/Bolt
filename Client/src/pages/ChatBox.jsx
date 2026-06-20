@@ -40,7 +40,7 @@ const Chatbox = () => {
       const formData = new FormData();
       formData.append("to_user_id", userId);
       formData.append("text", text);
-      if (image) formData.append("media", image);
+      if (image) formData.append("image", image);
 
       const { data } = await api.post("/api/message/send", formData, {
         headers: { Authorization: `Bearer ${token}` },
