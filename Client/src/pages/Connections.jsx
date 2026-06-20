@@ -9,7 +9,7 @@ import {
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useAuth } from "@clerk/clerk-react";
-import { fetchConnections } from "../redux/features/connectionSlice.js";
+import { fetchConnections } from "../features/connections/connectionsSlice.js";
 import api from "../api/axios";
 import toast from "react-hot-toast";
 
