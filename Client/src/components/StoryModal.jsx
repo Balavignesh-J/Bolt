@@ -92,16 +92,16 @@ const StoryModal = ({ setShowModal, fetchStories }) => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 min-h-screen bg-black/80 backdrop-blur text-white flex items-center justify-center p-4">
-      <div className="w-full max-w-md">
+    <div className="fixed inset-0 z-50 min-h-screen bg-slate-900/30 dark:bg-black/50 backdrop-blur-sm text-slate-900 dark:text-white flex items-center justify-center p-4">
+      <div className="w-full max-w-2xl mx-4 p-6 bg-white/60 dark:bg-white/5 border border-white/40 dark:border-white/10 shadow-xl shadow-slate-200/50 dark:shadow-black/30 backdrop-blur-xl rounded-2xl transition-all duration-300">
         <div className="text-center mb-4 flex items-center justify-between">
           <button
             onClick={() => setShowModal(false)}
-            className="text-white p-2 cursor-pointer"
+            className="text-slate-600 dark:text-white p-2 cursor-pointer hover:bg-slate-200/50 dark:hover:bg-white/10 rounded-xl transition-colors"
           >
             <ArrowLeft />
           </button>
-          <p className="text-lg font-semibold">Create Story</p>
+          <p className="text-lg font-semibold text-slate-900 dark:text-white">Create Story</p>
           <span className="w-10"></span>
         </div>
         <div
@@ -110,7 +110,7 @@ const StoryModal = ({ setShowModal, fetchStories }) => {
         >
           {mode === "text" && (
             <textarea
-              className="bg-transparent text-white w-full h-full p-6 text-lg resize-none focus:outline-none"
+              className="bg-transparent text-white placeholder:text-white/70 w-full h-full p-6 text-lg resize-none focus:outline-none"
               placeholder="what's on your mind?"
               onChange={(e) => setText(e.target.value)}
               value={text}
@@ -151,16 +151,16 @@ const StoryModal = ({ setShowModal, fetchStories }) => {
               setMedia(null);
               setPreviewUrl(null);
             }}
-            className={`flex-1 flex items-center justify-center gap-2 p-2 rounded ${
-              mode === "text" ? "bg-white text-black" : "bg-zinc-800"
+            className={`flex-1 flex items-center justify-center gap-2 p-2 rounded-xl transition-colors ${
+              mode === "text" ? "bg-white/70 dark:bg-white/20 text-slate-900 dark:text-white shadow" : "bg-white/20 dark:bg-white/5 hover:bg-white/40 dark:hover:bg-white/10 text-slate-700 dark:text-slate-300"
             }`}
           >
             <Text size={18} />
             Text
           </button>
           <label
-            className={`flex-1 flex items-center justify-center gap-2 p-2 rounded cursor-pointer ${
-              mode === "media" ? "bg-white text-black" : "bg-zinc-800"
+            className={`flex-1 flex items-center justify-center gap-2 p-2 rounded-xl cursor-pointer transition-colors ${
+              mode === "media" ? "bg-white/70 dark:bg-white/20 text-slate-900 dark:text-white shadow" : "bg-white/20 dark:bg-white/5 hover:bg-white/40 dark:hover:bg-white/10 text-slate-700 dark:text-slate-300"
             }`}
           >
             <input
@@ -178,7 +178,7 @@ const StoryModal = ({ setShowModal, fetchStories }) => {
               loading: "Creating story...",
             })
           }
-          className="flex items-center justify-center gap-2 text-white py-3 mt-4 w-full rounded bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 active:scale-95 transition"
+          className="flex items-center justify-center gap-2 py-2.5 mt-4 w-full rounded-xl bg-slate-900 text-white dark:bg-white dark:text-slate-900 font-medium shadow-lg hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
         >
           <Sparkle size={18} />
           Create Story

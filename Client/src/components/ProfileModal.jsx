@@ -44,10 +44,10 @@ const ProfileModal = ({ setShowEdit }) => {
     }
   };
   return (
-    <div className="fixed top-0 bottom-0 left-0 right-0 z-110 h-screen overflow-y-scroll bg-black/50">
-      <div className="max-w-2xl sm:py-6 mx-auto">
-        <div className="bg-white rounded-lg shadow p-6 ">
-          <h1 className="text-2xl font-bold text-gray-900 mb-6">
+    <div className="fixed inset-0 z-110 h-screen overflow-y-scroll bg-slate-900/30 dark:bg-black/50 backdrop-blur-sm flex items-center justify-center p-4">
+      <div className="w-full max-w-2xl sm:py-6 mx-auto">
+        <div className="bg-white/60 dark:bg-white/5 border border-white/40 dark:border-white/10 shadow-xl shadow-slate-200/50 dark:shadow-black/30 backdrop-blur-xl rounded-2xl transition-all duration-300 p-6 text-slate-900 dark:text-slate-100">
+          <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-100 mb-6">
             Edit Profile
           </h1>
           <form
@@ -68,7 +68,7 @@ const ProfileModal = ({ setShowEdit }) => {
                   id="profile_picture"
                   accept="image/*"
                   hidden
-                  className="w-full p-3 border border-gray-200 rounded-lg"
+                  className="w-full px-4 py-2.5 border border-white/10 bg-white/60 dark:bg-white/5 backdrop-blur-lg rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-slate-400 dark:focus:ring-slate-500 text-slate-900 dark:text-slate-100"
                   onChange={(e) =>
                     setEditForm({
                       ...editForm,
@@ -101,7 +101,7 @@ const ProfileModal = ({ setShowEdit }) => {
                   id="cover_photo"
                   accept="image/*"
                   hidden
-                  className="w-full p-3 border border-gray-200 rounded-lg"
+                  className="w-full px-4 py-2.5 border border-white/10 bg-white/60 dark:bg-white/5 backdrop-blur-lg rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-slate-400 dark:focus:ring-slate-500 text-slate-900 dark:text-slate-100"
                   onChange={(e) =>
                     setEditForm({
                       ...editForm, // keep all other fields the same
@@ -138,7 +138,7 @@ const ProfileModal = ({ setShowEdit }) => {
               <input
                 type="text"
                 placeholder="Please enter your full name"
-                className="w-full p-3 border border-gray-200 rounded-lg"
+                className="w-full px-4 py-2.5 border border-white/10 bg-white/60 dark:bg-white/5 backdrop-blur-lg rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-slate-400 dark:focus:ring-slate-500 placeholder:text-slate-400 dark:placeholder:text-slate-500 text-slate-900 dark:text-slate-100"
                 onChange={(e) =>
                   setEditForm({ ...editForm, full_name: e.target.value })
                 }
@@ -148,13 +148,13 @@ const ProfileModal = ({ setShowEdit }) => {
             <div className="">
               <label
                 htmlFor="text"
-                className="block text-sm font-medium text-gray-700 mb-1"
+                className="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-1"
               >
                 Username
               </label>
               <input
                 type="text"
-                className="w-full p-3 border border-gray-200 rounded-lg"
+                className="w-full px-4 py-2.5 border border-white/10 bg-white/60 dark:bg-white/5 backdrop-blur-lg rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-slate-400 dark:focus:ring-slate-500 placeholder:text-slate-400 dark:placeholder:text-slate-500 text-slate-900 dark:text-slate-100"
                 placeholder="Please enter your username"
                 onChange={(e) =>
                   setEditForm({ ...editForm, username: e.target.value })
@@ -165,13 +165,13 @@ const ProfileModal = ({ setShowEdit }) => {
             <div className="">
               <label
                 htmlFor="text"
-                className="block text-sm font-medium text-gray-700 mb-1"
+                className="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-1"
               >
                 Bio
               </label>
               <textarea
                 rows={3}
-                className="w-full p-3 border border-gray-200 rounded-lg"
+                className="w-full px-4 py-2.5 border border-white/10 bg-white/60 dark:bg-white/5 backdrop-blur-lg rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-slate-400 dark:focus:ring-slate-500 placeholder:text-slate-400 dark:placeholder:text-slate-500 text-slate-900 dark:text-slate-100"
                 placeholder="Please enter a short bio"
                 onChange={(e) =>
                   setEditForm({ ...editForm, bio: e.target.value })
@@ -183,13 +183,13 @@ const ProfileModal = ({ setShowEdit }) => {
             <div className="">
               <label
                 htmlFor="text"
-                className="block text-sm font-medium text-gray-700 mb-1"
+                className="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-1"
               >
                 Location
               </label>
               <input
                 type="text"
-                className="w-full p-3 border border-gray-200 rounded-lg"
+                className="w-full px-4 py-2.5 border border-white/10 bg-white/60 dark:bg-white/5 backdrop-blur-lg rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-slate-400 dark:focus:ring-slate-500 placeholder:text-slate-400 dark:placeholder:text-slate-500 text-slate-900 dark:text-slate-100"
                 placeholder="Please enter your location"
                 onChange={(e) =>
                   setEditForm({ ...editForm, location: e.target.value })
@@ -201,13 +201,13 @@ const ProfileModal = ({ setShowEdit }) => {
               <button
                 onClick={() => setShowEdit(false)}
                 type="button"
-                className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors cursor-pointer"
+                className="px-4 py-2 border border-white/40 dark:border-white/10 rounded-xl bg-white/60 dark:bg-white/5 hover:bg-white/50 dark:hover:bg-white/10 backdrop-blur-xl text-slate-700 dark:text-slate-300 transition-colors cursor-pointer shadow-sm"
               >
                 Cancel
               </button>
               <button
                 type="submit"
-                className="px-4 py-2 bg-gradient-to-r from-indigo-500 to-purple-600 text-white rounded-lg hover:from-indigo-600 hover:to-purple-700 transition cursor-pointer"
+                className="px-4 py-2 rounded-xl bg-slate-900 text-white dark:bg-white dark:text-slate-900 font-medium shadow-lg hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 cursor-pointer"
               >
                 Save Changes
               </button>

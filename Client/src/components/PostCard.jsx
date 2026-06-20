@@ -38,7 +38,7 @@ const PostCard = ({ post }) => {
     `<span class="text-indigo-600">$1</span>`,
   );
   return (
-    <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl shadow-xl p-4 space-y-4 w-full max-w-2xl text-slate-200">
+    <div className="bg-white/60 dark:bg-white/5 border border-white/40 dark:border-white/10 shadow-xl shadow-slate-200/50 dark:shadow-black/30 backdrop-blur-xl rounded-2xl transition-all duration-300 p-4 sm:p-6 space-y-4 w-full max-w-2xl text-slate-900 dark:text-slate-100">
       {/* user info + menu */}
       <div className="inline-flex items-center gap-3 cursor-pointer">
         <img
@@ -48,17 +48,17 @@ const PostCard = ({ post }) => {
         />
         <div>
           <div className="flex items-center space-x-1">
-            <span>{post.user.full_name}</span>
+            <span className="font-medium">{post.user.full_name}</span>
             <BadgeCheck className="w-4 h-4 text-blue-500" />
           </div>
-          <div className="text-slate-400 text-sm">
+          <div className="text-slate-500 dark:text-slate-400 text-sm">
             @{post.user.username} · {moment(post.createdAt).fromNow()}
           </div>
         </div>
       </div>
       {post.content && (
         <div
-          className="text-slate-300 text-sm"
+          className="text-slate-600 dark:text-slate-300 text-sm"
           dangerouslySetInnerHTML={{ __html: postwithHashtags }}
         ></div>
       )}
@@ -72,25 +72,21 @@ const PostCard = ({ post }) => {
           />
         ))}
       </div>
-      <div className="flex items-center gap-4 text-slate-300 text-sm pt-2 border-t border-white/10">
-        <div className="flex items-center gap-1">
+      <div className="flex items-center gap-4 text-slate-600 dark:text-slate-400 text-sm pt-4 border-t border-white/20 dark:border-white/10">
+        <div className="flex items-center gap-1.5 p-2 rounded-xl hover:bg-slate-200/50 dark:hover:bg-white/10 cursor-pointer transition-colors" onClick={handleLike}>
           <Heart
-            className={`w-4 h-4 cursor-pointer ${
+            className={`w-4 h-4 ${
               likes.includes(currentUser._id) && "text-red-500 fill-red-500"
             }`}
-            onClick={handleLike}
           />
           <span>{likes.length}</span>
         </div>
-        <div className="flex items-center gap-1">
-          <MessageCircle
-            className="w-4 h-4 cursor-pointer"
-            onClick={toggleComments}
-          />
+        <div className="flex items-center gap-1.5 p-2 rounded-xl hover:bg-slate-200/50 dark:hover:bg-white/10 cursor-pointer transition-colors" onClick={toggleComments}>
+          <MessageCircle className="w-4 h-4" />
           <span>{12}</span>
         </div>
-        <div className="flex items-center gap-1">
-          <Share2 className="w-4 h-4 cursor-pointer" onClick={handleShare} />
+        <div className="flex items-center gap-1.5 p-2 rounded-xl hover:bg-slate-200/50 dark:hover:bg-white/10 cursor-pointer transition-colors" onClick={handleShare}>
+          <Share2 className="w-4 h-4" />
           <span>{7}</span>
         </div>
       </div>

@@ -58,13 +58,13 @@ const StoriesBar = () => {
       <div className="flex gap-4 pb-5">
         <div
           onClick={() => setShowModal(true)}
-          className="rounded-lg shadow-sm min-w-30 max-w-30 max-h-40 aspect-[3/4] cursor-pointer hover:shadow-lg transition-all duration-200 border border-white/20 border-dashed bg-white/5 backdrop-blur-sm"
+          className="rounded-xl shadow-sm min-w-30 max-w-30 max-h-40 aspect-[3/4] cursor-pointer hover:shadow-lg transition-all duration-200 border border-white/40 dark:border-white/10 bg-white/60 dark:bg-white/5 backdrop-blur-xl text-slate-700 dark:text-slate-300"
         >
           <div className="h-full flex flex-col items-center justify-center p-4">
-            <div className="size-10 bg-indigo-500/80 rounded-full flex items-center justify-center mb-3">
-              <Plus className="text-white" />
+            <div className="size-10 bg-indigo-500 dark:bg-indigo-600 text-white rounded-full flex items-center justify-center mb-3 shadow-lg">
+              <Plus />
             </div>
-            <p className="text-slate-200">Create Story</p>
+            <p className="text-sm font-medium">Create</p>
           </div>
         </div>
         {stories.map((story, idx) => {
@@ -72,7 +72,7 @@ const StoriesBar = () => {
             <div
               key={idx}
               onClick={() => setViewStory(story)}
-              className="relative rounded-lg shadow min-w-30 max-w-30 max-h-40 aspect-[3/4] cursor-pointer hover:shadow-lg transition-all duration-200 bg-gradient-to-b from-indigo-500 to-purple-600 hover:from-indigo-700 hover:to-purple-800 active:scale-95 overflow-hidden"
+              className="relative rounded-xl shadow min-w-30 max-w-30 max-h-40 aspect-[3/4] cursor-pointer hover:shadow-lg transition-all duration-200 bg-gradient-to-b from-indigo-500/90 to-purple-600/90 dark:from-indigo-600/80 dark:to-purple-800/80 hover:from-indigo-600 hover:to-purple-700 active:scale-95 overflow-hidden backdrop-blur-md"
             >
               <img
                 src={story.user.profile_picture}

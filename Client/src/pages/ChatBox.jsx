@@ -78,17 +78,17 @@ const Chatbox = () => {
 
   return (
     user && (
-      <div className="flex flex-col h-screen">
+      <div className="flex flex-col h-full bg-white/40 dark:bg-white/5 border border-white/40 dark:border-white/10 shadow-xl shadow-slate-200/50 dark:shadow-black/30 backdrop-blur-xl rounded-2xl overflow-hidden transition-all duration-300">
         {/* Header */}
-        <div className="flex items-center gap-2 p-2 md:px-10 xl:pl-42 bg-white/5 backdrop-blur-md border-b border-white/10 text-slate-200">
+        <div className="flex items-center gap-3 px-4 py-3 md:px-10 xl:pl-8 border-b border-white/40 dark:border-white/10 bg-white/60 dark:bg-white/5 backdrop-blur-xl text-slate-900 dark:text-slate-100">
           <img
             src={user.profile_picture}
             alt=""
-            className="size-8 rounded-full"
+            className="size-8 rounded-full shadow"
           />
           <div>
             <p className="font-medium">{user.full_name}</p>
-            <p className="text-sm text-slate-400 -mt-1.5">@{user.username}</p>
+            <p className="text-sm text-slate-500 dark:text-slate-400 -mt-1">@{user.username}</p>
           </div>
         </div>
         {/* Messages container */}
@@ -102,7 +102,7 @@ const Chatbox = () => {
                   className={`flex flex-col ${message.to_user_id !== user._id ? "items-start" : "items-end"}`}
                 >
                   <div
-                    className={`p-2 text-sm max-w-sm bg-white/10 backdrop-blur-md border border-white/20 text-slate-200 rounded-xl shadow-lg ${message.to_user_id !== user._id ? "rounded-bl-none" : " rounded-br-none"}`}
+                    className={`p-3 text-sm max-w-sm backdrop-blur-xl shadow-md rounded-2xl transition-all duration-200 ${message.to_user_id !== user._id ? "bg-white/60 dark:bg-white/10 text-slate-800 dark:text-slate-200 rounded-bl-none border border-white/40 dark:border-white/10" : "bg-indigo-500/90 dark:bg-indigo-600/90 text-white rounded-br-none border border-indigo-400/30"}`}
                   >
                     {message.message_type === "image" && (
                       <img
@@ -119,10 +119,10 @@ const Chatbox = () => {
           </div>
         </div>
         <div className="px-4">
-          <div className="flex items-center gap-3 pl-5 p-1.5 bg-white/10 backdrop-blur-md w-full max-w-xl mx-auto border border-white/20 shadow-lg rounded-full mb-5">
+          <div className="flex items-center gap-3 pl-5 p-1.5 bg-white/60 dark:bg-white/5 border border-white/40 dark:border-white/10 backdrop-blur-xl w-full max-w-xl mx-auto shadow-xl rounded-2xl mb-5 transition-all duration-300">
             <input
               type="text"
-              className="text-slate-200 bg-transparent outline-none flex-1 placeholder-slate-400"
+              className="text-slate-800 dark:text-slate-200 outline-none flex-1 bg-transparent placeholder:text-slate-500 dark:placeholder:text-slate-400"
               placeholder="Type a message..."
               value={text}
               onChange={(e) => setText(e.target.value)}
@@ -136,7 +136,7 @@ const Chatbox = () => {
                   className="h-8 rounded"
                 />
               ) : (
-                  <ImageIcon className="size-7 text-slate-300 cursor-pointer" />
+                <ImageIcon className="size-7 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 cursor-pointer transition-colors" />
               )}
               <input
                 type="file"
@@ -148,7 +148,7 @@ const Chatbox = () => {
             </label>
             <button
               onClick={sendMessage}
-              className="bg-gradient-to-br from-indigo-500 to-purple-600 hover:from-indigo-700 hover:to-purple-700 active:scale-95 cursor-pointer text-white p-2 rounded-full"
+              className="bg-indigo-500 hover:bg-indigo-600 text-white dark:bg-white dark:text-slate-900 shadow-md active:scale-95 cursor-pointer p-2 rounded-xl transition-all duration-200"
             >
               <SendHorizonal size={18} />
             </button>

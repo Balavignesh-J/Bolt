@@ -48,10 +48,10 @@ const Profile = () => {
   }, [profileId]);
 
   return user ? (
-    <div className="relative h-full overflow-y-scroll bg-gray-50 p-6">
+    <div className="relative h-full overflow-y-scroll p-6">
       <div className="max-w-3xl mx-auto">
         {/* Profile card  */}
-        <div className="bg-white rounded-2xl shadow overflow-hidden">
+        <div className="bg-white/60 dark:bg-white/5 border border-white/40 dark:border-white/10 shadow-xl shadow-slate-200/50 dark:shadow-black/30 backdrop-blur-xl rounded-2xl overflow-hidden transition-all duration-300">
           {/* Cover photo  */}
           <div className="h-40 md:h-56 bg-gradient-to-r from-indigo-200 via-purple-200 to-pink-200">
             {user.cover_photo && (
@@ -71,12 +71,12 @@ const Profile = () => {
         </div>
         {/* Tabs  */}
         <div className="mt-6">
-          <div className="bg-white rounded-xl shadow p-1 flex max-w-md mx-auto">
+          <div className="bg-white/60 dark:bg-white/5 border border-white/40 dark:border-white/10 shadow-xl shadow-slate-200/50 dark:shadow-black/30 backdrop-blur-xl rounded-2xl p-1 flex max-w-md mx-auto transition-all duration-300">
             {["posts", "media", "likes"].map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`flex-1 px-5 py-2 text-sm font-medium rounded-lg transition-colors cursor-pointer ${activeTab === tab ? "bg-indigo-600 text-white" : "text-gray-600 hover:text-gray-900"}`}
+                className={`flex-1 px-5 py-2 text-sm font-medium rounded-xl transition-all duration-200 cursor-pointer ${activeTab === tab ? "bg-white/70 dark:bg-white/15 shadow-sm text-slate-900 dark:text-slate-100" : "text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100"}`}
               >
                 {tab.charAt(0).toUpperCase() + tab.slice(1)}
               </button>

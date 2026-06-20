@@ -49,16 +49,16 @@ const Feed = () => {
           ))}
         </div>
       </div>
-      <div className="max-xl:hidden sticky top-10">
-        <div className="max-w-xs bg-white/10 backdrop-blur-md border border-white/20 text-xs p-4 rounded-xl flex flex-col gap-2 shadow-lg text-slate-200">
-          <h3 className="text-slate-100 font-semibold">Sponsored</h3>
+      <div className="max-xl:hidden sticky top-10 space-y-6">
+        <div className="max-w-xs bg-white/60 dark:bg-white/5 border border-white/40 dark:border-white/10 shadow-xl shadow-slate-200/50 dark:shadow-black/30 backdrop-blur-xl rounded-2xl p-6 text-xs flex flex-col gap-3 transition-all duration-300">
+          <h3 className="text-slate-800 dark:text-slate-200 font-semibold text-sm">Sponsored</h3>
           <img
             src={assets.sponsored_img}
             alt="Sponsored"
-            className="w-full h-auto rounded-md object-cover"
+            className="w-full h-auto rounded-xl object-cover"
           />
-          <p className="text-slate-200 font-medium">Email Marketing</p>
-          <p className="text-slate-400 text-sm">
+          <p className="text-slate-600 dark:text-slate-300 font-medium text-sm">Email Marketing</p>
+          <p className="text-slate-400 dark:text-slate-500">
             Supercharge your marketing with a powerful, easy-to-use platform
             built for results.
           </p>

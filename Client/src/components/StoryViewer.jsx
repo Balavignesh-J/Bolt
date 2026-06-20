@@ -64,7 +64,7 @@ const StoryViewer = ({ viewStory, setViewStory }) => {
   };
   return (
     <div
-      className="fixed inset-0 h-screen bg-black bg-opacity-90 z-110 flex items-center justify-center"
+      className="fixed inset-0 h-screen bg-slate-900/30 dark:bg-black/50 backdrop-blur-sm z-110 flex items-center justify-center"
       style={{
         backgroundColor:
           viewStory.media_type === "text"
@@ -78,7 +78,7 @@ const StoryViewer = ({ viewStory, setViewStory }) => {
           style={{ width: `${progress}%` }}
         ></div>
       </div>
-      <div className="absolute top-4 left-4 flex items-center space-x-3 p-2 px-4 sm:p-4 sm:px-8 backdrop-blur-2xl rounded bg-black/50">
+      <div className="absolute top-4 left-4 flex items-center space-x-3 p-2 px-4 sm:p-4 sm:px-8 bg-white/60 dark:bg-white/5 border border-white/40 dark:border-white/10 shadow-xl shadow-slate-200/50 dark:shadow-black/30 backdrop-blur-xl rounded-2xl transition-all duration-300">
         <img
           src={viewStory.user?.profile_picture}
           alt=""

@@ -52,14 +52,14 @@ const RecentMessages = () => {
   }, [user]);
 
   return (
-    <div className="bg-white/10 backdrop-blur-md border border-white/20 max-w-xs mt-4 p-4 min-h-20 rounded-xl shadow-lg text-xs text-slate-200">
-      <h3 className="font-semibold text-slate-100 mb-4">Recent Message</h3>
-      <div className="flex flex-col max-h-56 overflow-y-scroll no-scrollbar">
+    <div className="bg-white/60 dark:bg-white/5 border border-white/40 dark:border-white/10 shadow-xl shadow-slate-200/50 dark:shadow-black/30 backdrop-blur-xl max-w-xs mt-4 p-6 min-h-20 rounded-2xl text-xs text-slate-800 dark:text-slate-200 transition-all duration-300">
+      <h3 className="font-semibold text-slate-900 dark:text-slate-100 mb-4 text-sm">Recent Messages</h3>
+      <div className="flex flex-col max-h-56 overflow-y-scroll no-scrollbar space-y-1">
         {messages.map((message, index) => (
           <Link
             key={index}
             to={`/messages/${message.from_user_id._id}`}
-            className="flex items-start gap-2 py-2 px-2 rounded-lg hover:bg-white/10 transition-colors"
+            className="flex items-start gap-2 p-2 rounded-xl hover:bg-white/50 dark:hover:bg-white/10 transition-colors"
           >
             <img
               src={message.from_user_id.profile_picture}
@@ -67,14 +67,14 @@ const RecentMessages = () => {
               className="w-8 h-8 rounded-full"
             />
             <div className="w-full">
-              <div className="flex justify-between">
-                <p className="font-medium">{message.from_user_id.full_name}</p>
-                <p className="text-[10px] text-slate-400">
+              <div className="flex justify-between items-center">
+                <p className="font-medium text-slate-900 dark:text-slate-100">{message.from_user_id.full_name}</p>
+                <p className="text-[10px] text-slate-500 dark:text-slate-400">
                   {moment(message.createdAt).fromNow()}
                 </p>
               </div>
-              <div className="flex justify-between">
-                <p className="text-slate-300">
+              <div className="flex justify-between items-center mt-1">
+                <p className="text-slate-600 dark:text-slate-300 truncate pr-2">
                   {message.text ? message.text : "Media"}
                 </p>
                 {!message.seen && (

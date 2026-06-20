@@ -52,17 +52,17 @@ const CreatePost = () => {
     }
   };
   return (
-    <div className="min-h-screen bg-transparent">
+    <div className="relative">
       <div className="max-w-6xl mx-auto p-6">
         {/* title  */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-slate-100 mb-2">
+          <h1 className="text-3xl font-bold text-slate-900 dark:text-slate-100 mb-2">
             Create Post
           </h1>
-          <p className="text-slate-300">Share your thoughts with the world.</p>
+          <p className="text-slate-600 dark:text-slate-400">Share your thoughts with the world.</p>
         </div>
         {/* Form */}
-        <div className="max-w-xl bg-white/10 backdrop-blur-md border border-white/20 p-4 sm:p-8 sm:pb-3 rounded-2xl shadow-xl space-y-4 text-slate-200">
+        <div className="max-w-xl bg-white/60 dark:bg-white/5 border border-white/40 dark:border-white/10 shadow-xl shadow-slate-200/50 dark:shadow-black/30 backdrop-blur-xl rounded-2xl p-4 sm:p-8 sm:pb-4 space-y-4 transition-all duration-300">
           {/* Header  */}
           <div className="flex items-center gap-3">
             <img
@@ -71,13 +71,13 @@ const CreatePost = () => {
               className="w-12 h-12 rounded-full shadow"
             />
             <div className="">
-              <h2 className="font-semibold">{user.full_name}</h2>
-              <p className="text-sm text-slate-400">@{user.username}</p>
+              <h2 className="font-semibold text-slate-900 dark:text-slate-100">{user.full_name}</h2>
+              <p className="text-sm text-slate-500 dark:text-slate-400">@{user.username}</p>
             </div>
           </div>
           {/* textare  */}
           <textarea
-            className="w-full resize-none max-h-20 mt-4 text-sm outline-none placeholder-slate-400 bg-transparent text-slate-100"
+            className="w-full resize-none min-h-24 mt-4 text-sm outline-none bg-transparent placeholder:text-slate-400 dark:placeholder:text-slate-500 text-slate-900 dark:text-slate-100"
             placeholder="What's happening?"
             onChange={(e) => setContent(e.target.value)}
             value={content}
@@ -106,10 +106,10 @@ const CreatePost = () => {
             </div>
           )}
           {/* bottom bar  */}
-          <div className="flex items-center justify-between pt-3 border-t border-white/20">
+          <div className="flex items-center justify-between pt-4 border-t border-white/40 dark:border-white/10 mt-2">
             <label
               htmlFor="images"
-              className="flex items-center gap-2 text-sm text-slate-400 hover:text-slate-200 transition cursor-pointer"
+              className="flex items-center gap-2 text-sm text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200 transition cursor-pointer"
             >
               <Image className="size-6" />
             </label>
@@ -131,7 +131,7 @@ const CreatePost = () => {
                 })
               }
               type="submit"
-              className="text-sm bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 scale-95 transition text-white font-medium px-8 py-2 rounded-md cursor-pointer"
+              className="px-8 py-2 rounded-xl bg-slate-900 text-white dark:bg-white dark:text-slate-900 font-medium shadow-lg hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 cursor-pointer disabled:opacity-50 text-sm"
             >
               Publish Post
             </button>
