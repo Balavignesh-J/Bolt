@@ -22,7 +22,7 @@ export const addUserStory = async (req, res) => {
         transformation: [{ quality: 100, format: "webp", width: 1280 }],
       });
     }
-    await Story.create({
+    const story = await Story.create({
       user: userId,
       content,
       media_url,

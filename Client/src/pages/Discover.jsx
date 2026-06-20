@@ -7,6 +7,8 @@ import { useAuth } from "@clerk/clerk-react";
 import { useDispatch } from "react-redux";
 import { fetchUser } from "../features/user/userSlice";
 
+import toast from "react-hot-toast";
+
 const Discover = () => {
   const [input, setInput] = useState("");
   const [users, setUsers] = useState([]);
@@ -15,7 +17,7 @@ const Discover = () => {
   const dispatch = useDispatch();
 
   const handleSearch = async (e) => {
-    if (e.key === "enter") {
+    if (e.key === "Enter") {
       setUsers([]);
       setLoading(true);
       try {

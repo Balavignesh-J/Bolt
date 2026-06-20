@@ -1,4 +1,4 @@
-import { assets, dummyPostsData } from "../assets/assets";
+import { assets } from "../assets/assets";
 import Loading from "../components/Loading";
 import { useEffect, useState } from "react";
 import StoriesBar from "../components/StoriesBar";

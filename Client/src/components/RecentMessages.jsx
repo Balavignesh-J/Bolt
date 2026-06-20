@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import { dummyRecentMessagesData } from "../assets/assets";
 import { Link } from "react-router-dom";
 import moment from "moment";
 import { useAuth, useUser } from "@clerk/clerk-react";
 import api from "../api/axios";
+import toast from "react-hot-toast";
 
 const RecentMessages = () => {
   const [messages, setMessages] = useState([]);
@@ -44,9 +44,9 @@ const RecentMessages = () => {
   useEffect(() => {
     if (user) {
       fetchRecentMessages();
-      setInterval(fetchRecentMessages, 30000);
+      const interval = setInterval(fetchRecentMessages, 30000);
       return () => {
-        clearInterval();
+        clearInterval(interval);
       };
     }
   }, [user]);

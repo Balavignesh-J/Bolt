@@ -26,7 +26,7 @@ const StoryModal = ({ setShowModal, fetchStories }) => {
   const handleMediaUpload = (e) => {
     const file = e.target.files[0];
     if (file) {
-      if (file.startsWith("video")) {
+      if (file.type.startsWith("video")) {
         if (file.size > MAX_VIDEO_SIZE_MB * 1024 * 1024) {
           toast.error(`Video size cannot exceed ${MAX_VIDEO_SIZE_MB}mb`);
           setMedia(null);
@@ -50,12 +50,12 @@ const StoryModal = ({ setShowModal, fetchStories }) => {
             setText(" ");
           }
         };
+      } else if (file.type.startsWith("image")) {
+        setMedia(file);
+        setPreviewUrl(URL.createObjectURL(file));
+        setMode("media");
+        setText(" ");
       }
-    } else if (file.type.startsWith("image")) {
-      setMedia(file);
-      setPreviewUrl(URL.createObjectURL(file));
-      setMode("media");
-      setText(" ");
     }
   };
 

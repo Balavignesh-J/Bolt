@@ -31,7 +31,7 @@ router.post("/follow", protect, followUser);
 router.post("/unfollow", protect, unfollowUser);
 router.post("/connect", protect, sendConnectionRequest);
 router.post("/accept", protect, acceptConnectionsRequest);
-router.post("/connections", protect, getUserConnections);
+router.get("/connections", protect, getUserConnections);
 
 router.post("/profiles", getUserProfiles);
 router.get("/recent-messages", protect, getUserRecentMessages);

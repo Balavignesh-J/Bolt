@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import { dummyMessagesData, dummyUserData } from "../assets/assets";
 import { ImageIcon, SendHorizonal } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -17,7 +16,7 @@ const Chatbox = () => {
   const { messages } = useSelector((state) => state.messages);
   const { userId } = useParams();
   const { getToken } = useAuth();
-  const { dispatch } = useDispatch();
+  const dispatch = useDispatch();
 
   const [text, setText] = useState("");
   const [image, setImage] = useState(null);
@@ -67,11 +66,11 @@ const Chatbox = () => {
   }, [userId]);
 
   useEffect(() => {
-    if (connections.length > 1) {
+    if (connections.length > 0) {
       const user = connections.find((connection) => connection._id === userId);
       setUser(user);
     }
-  }, []);
+  }, [connections, userId]);
 
   useEffect(() => {
     messageEndRef.current?.scrollIntoView({ behavior: "smooth" });

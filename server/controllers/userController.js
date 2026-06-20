@@ -17,7 +17,7 @@ export const getUserData = async (req, res) => {
     }
     return res.json({
       success: true,
-      data: user,
+      user,
     });
   } catch (error) {
     return res.json({
@@ -34,7 +34,7 @@ export const updateUserData = async (req, res) => {
 
     const tempUser = await User.findById(userId);
 
-    !username && username === tempUser.username;
+    !username && (username = tempUser.username);
 
     if (tempUser.username !== username) {
       const user = await User.findOne({ username });
@@ -91,7 +91,7 @@ export const updateUserData = async (req, res) => {
 
     return res.json({
       success: true,
-      data: user,
+      user,
       message: "Profile updated Sucessfully",
     });
   } catch (error) {
@@ -117,7 +117,7 @@ export const discoverUsers = async (req, res) => {
     const filteredUsers = users.filter((user) => user._id !== userId);
     return res.json({
       success: true,
-      data: filteredUsers,
+      users: filteredUsers,
       message: "Users found successfully",
     });
   } catch (error) {
@@ -299,11 +299,11 @@ export const acceptConnectionsRequest = async (req, res) => {
         message: "Connection request not found",
       });
     }
-    const user = await User.findOne(userId);
-    user.connection.push(id);
+    const user = await User.findById(userId);
+    user.connections.push(id);
     await user.save();
-    const toUser = await User.findOne(id);
-    toUser.connection.push(userId);
+    const toUser = await User.findById(id);
+    toUser.connections.push(userId);
     await toUser.save();
     connection.status = "accepted";
     await connection.save();
@@ -333,7 +333,7 @@ export const getUserProfiles = async (req, res) => {
     return res.json({
       success: true,
       profile,
-      post,
+      posts: post,
     });
   } catch (error) {
     return res.json({

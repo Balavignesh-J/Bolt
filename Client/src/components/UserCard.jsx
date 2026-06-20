@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import api from "../api/axios";
+import { fetchUser } from "../features/user/userSlice";
 
 const UserCard = ({ user }) => {
   const currentUser = useSelector((state) => state.user.value);

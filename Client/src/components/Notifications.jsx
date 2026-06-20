@@ -19,7 +19,9 @@ const Notifications = ({ t, message }) => {
             <p className="text-sm font-medium text-gray-900">
               {message.from_user_id.full_name}
             </p>
-            <p className="text-sm text-gray-500">{message.text.slice(0, 50)}</p>
+            <p className="text-sm text-gray-500">
+              {message.text ? message.text.slice(0, 50) : "Sent a media file"}
+            </p>
           </div>
         </div>
       </div>

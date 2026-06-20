@@ -24,7 +24,7 @@ export const sendMessage = async (req, res) => {
   try {
     const { userId } = req.auth();
     const { to_user_id, text } = req.body;
-    const { image } = req.file;
+    const image = req.file;
     let media_url = "";
     let message_type = image ? "image" : "text";
 
@@ -32,7 +32,7 @@ export const sendMessage = async (req, res) => {
       const fileBuffer = fs.readFileSync(image.path);
       const result = await imageKit.files.upload({
         file: fileBuffer.toString("base64"),
-        fileName: media.originalname,
+        fileName: image.originalname,
       });
       media_url = imageKit.helper.buildSrc({
         urlEndpoint: process.env.IMAGEKIT_URL_ENDPOINT,

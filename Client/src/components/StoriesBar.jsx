@@ -1,6 +1,5 @@
 import { Plus } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
-import { dummyStoriesData } from "../assets/assets";
 import moment from "moment";
 import StoryModal from "./StoryModal";
 import StoryViewer from "./StoryViewer";
@@ -17,7 +16,7 @@ const StoriesBar = () => {
   const fetchStories = async () => {
     const token = await getToken();
     try {
-      const { data } = api.get("/api/story/get", {
+      const { data } = await api.get("/api/story/get", {
         headers: { Authorization: `Bearer ${token}` },
       });
       if (data.success) {

@@ -44,7 +44,7 @@ const App = () => {
       );
       eventSource.onmessage = (event) => {
         const message = JSON.parse(event.data);
-        if (pathnameRef.current === "/messages/" + message.from_user_id._id) {
+        if (pathNameRef.current === "/messages/" + message.from_user_id._id) {
           dispatch(addMessage(message));
         } else {
           toast.custom((t) => <Notifications t={t} message={message} />, {
@@ -69,7 +69,7 @@ const App = () => {
         <Route path="/" element={!user ? <Login /> : <Layout />}>
           <Route index element={<Feed />} />
           <Route path="messages" element={<Messages />} />
-          <Route path="messages/:userid" element={<ChatBox />} />
+          <Route path="messages/:userId" element={<ChatBox />} />
           <Route path="connections" element={<Connections />} />
           <Route path="discover" element={<Discover />} />
           <Route path="profile" element={<Profile />} />

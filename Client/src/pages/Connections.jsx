@@ -17,7 +17,7 @@ const Connections = () => {
   const [currentTab, setCurrentTab] = useState("Followers");
   const navigate = useNavigate();
   const { getToken } = useAuth();
-  const { dispatch } = useDispatch();
+  const dispatch = useDispatch();
   const { connections, pendingConnections, following, followers } = useSelector(
     (state) => state.connections,
   );
@@ -31,7 +31,7 @@ const Connections = () => {
     try {
       const token = await getToken();
       const { data } = await api.post(
-        `/api/connection/unfollow`,
+        `/api/user/unfollow`,
         { id: userId },
         { headers: { Authorization: `Bearer ${token}` } },
       );
@@ -50,7 +50,7 @@ const Connections = () => {
     try {
       const token = await getToken();
       const { data } = await api.post(
-        `/api/connection/accept`,
+        `/api/user/accept`,
         { id: userId },
         { headers: { Authorization: `Bearer ${token}` } },
       );
@@ -159,7 +159,7 @@ const Connections = () => {
                     )}
                     {currentTab === "Connections" && (
                       <button
-                        onClick={() => navigate(`/message/${user._id}`)}
+                        onClick={() => navigate(`/messages/${user._id}`)}
                         className="w-full p-2 text-sm rounded bg-slate-100 hover:bg-slate-200 text-slate-800 active:scale-95 transition cursor-pointer flex items-center justify-center gap-1"
                       >
                         <MessageSquare className="w-4 h-4" />

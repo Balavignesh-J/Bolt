@@ -7,7 +7,7 @@ import api from "../api/axios";
 import { useNavigate } from "react-router-dom";
 
 const CreatePost = () => {
-  const { navigate } = useNavigate();
+  const navigate = useNavigate();
   const [content, setContent] = useState("");
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -23,8 +23,9 @@ const CreatePost = () => {
       images.length && content
         ? "text_with_image"
         : images.length
-          ? "text"
-          : "image";
+          ? "image"
+          : "text";
+
     try {
       const formData = new FormData();
 
@@ -42,14 +43,13 @@ const CreatePost = () => {
       if (data.success) {
         navigate("/");
       } else {
-        console.log(data.message);
         throw new Error(data.message);
       }
     } catch (error) {
-      console.log(error.message);
       throw new Error(error.message);
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">

@@ -33,7 +33,9 @@ export const addPost = async (req, res) => {
       image_urls,
       post_type,
     });
-    res.status(201).json({ success: true, message: "Post created successfully" });
+    res
+      .status(201)
+      .json({ success: true, message: "Post created successfully" });
   } catch (error) {
     console.error("Error creating post:", error);
     res.status(500).json({ success: false, message: error.message });
@@ -51,7 +53,7 @@ export const getFeedPost = async (req, res) => {
 
     return res.json({
       success: true,
-      data: posts,
+      posts,
     });
   } catch (error) {
     return res.json({ success: false, message: error.message });
