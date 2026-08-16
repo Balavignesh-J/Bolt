@@ -21,7 +21,7 @@ router.post("/", async (req, res) => {
         },
         ...messages,
       ],
-      model: "llama-3.3-70b-versatile",
+      model: process.env.GROQ_MODEL || "llama-3.1-8b-instant",
     });
 
     const reply = chatCompletion.choices[0]?.message?.content || "Sorry, I couldn't process that.";

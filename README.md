@@ -30,7 +30,7 @@ The platform allows users to connect, share moments via posts and stories, chat 
 
 ### AI Features
 
-- **Integrated AI Assistant**: A built-in AI companion powered by Groq's Llama-3.3-70b model.
+- **Integrated AI Assistant**: A built-in AI companion powered by Groq's Llama-3.1-8b model.
 - **Contextual Memory**: The assistant remembers the conversation context natively within the user's active session.
 - **Dedicated UI**: The AI chat perfectly matches the peer-to-peer chat interface, complete with loading states and auto-scrolling.
 
@@ -56,7 +56,7 @@ The platform allows users to connect, share moments via posts and stories, chat 
 | **Backend**           | Node.js, Express.js                                         |
 | **Database**          | MongoDB with Mongoose ODM                                   |
 | **Authentication**    | Clerk (`@clerk/clerk-react`, `@clerk/express`)              |
-| **AI Services**       | Groq SDK (`llama-3.3-70b-versatile`)                        |
+| **AI Services**       | Groq SDK (`llama-3.1-8b-instant`)                        |
 | **Media/Uploads**     | ImageKit, Multer                                            |
 | **Background Jobs**   | Inngest, Nodemailer                                         |
 | **Icons & Utilities** | Lucide React, Axios, React Hot Toast, Moment.js             |
@@ -98,7 +98,7 @@ sequenceDiagram
     Client->>Redux: Dispatch addAiMessage(userMessage)
     Client->>Server: POST /api/chat {messages: [...history]}
     Server->>Groq: groq.chat.completions.create()
-    Groq-->>Server: Llama-3.3-70b Response
+    Groq-->>Server: Llama-3.1-8b Response
     Server-->>Client: { success: true, reply: "..." }
     Client->>Redux: Dispatch addAiMessage(assistantMessage)
     Client-->>User: Renders response
@@ -164,6 +164,7 @@ For the application to run successfully, both the client and server require envi
 | `MONGODB_URI`           | Connection string for your MongoDB database. |
 | `CLERK_SECRET_KEY`      | Secret key for Clerk authentication.         |
 | `GROQ_API_KEY`          | API key for the Groq AI provider.            |
+| `GROQ_MODEL`            | (Optional) Model ID for Groq AI (default: `llama-3.1-8b-instant`). |
 | `IMAGEKIT_PUBLIC_KEY`   | Public key for ImageKit integration.         |
 | `IMAGEKIT_PRIVATE_KEY`  | Private key for ImageKit integration.        |
 | `IMAGEKIT_URL_ENDPOINT` | Base URL endpoint for ImageKit.              |
